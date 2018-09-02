@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三级联动</title>
+</head>
+
+
+<body>
+{$proid}
+</body>
+
+
+
+
+
+<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script >
+
+    $('#pro').change(function(){  console.log(2222222);
+        $.ajax({
+            type:"post",
+            url:"{:url('Index/Index')}",
+            data:'pro_id='+$('#pro').val(),
+            dataType:"json",
+            success:function(data){
+               console.log(2222222);
+            }
+        });
+    });
+</script>
+</body>
+</html>

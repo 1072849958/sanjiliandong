@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三级联动</title>
+</head>
+
+
+<body>
+<!-- 省份 -->
+
+<select name="pro" id="pro">
+    {foreach $sf as $key=>$sfen }
+    <option value="{$sfen->provinceid}">{$sfen->province}</option>
+    {/foreach}
+</select>
+
+<!-- 城市 -->
+<select name="city" id="city">
+
+    <option>城市</option>
+</select>
+<!-- 区县 -->
+<select name="area" id="area">
+    <option>县级市</option>
+</select>
+<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script >
+    $('#pro').change(function(){
+        $('#pro').change(function(){
+            $.ajax({
+                type:"post",
+                url:"{:url('Index/Index')}",
+                data:'pro_id='+$('#pro').val(),
+                dataType:"json",
+                success:function(data){
+                    $('#city').html(data);
+                }
+            });
+        });
+    });
+    $('#city').change(function(){
+        $('#city').change(function(){
+            $.ajax({
+                type:"post",
+                url:"{:url('Index1/Index1')}",
+                data:'city_id='+$('#city').val(),
+                dataType:"json",
+                success:function(data){
+                    $('#area').html(data);
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
